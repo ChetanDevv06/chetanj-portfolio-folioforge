@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Details | Chetan</title>
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/aos.css">
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+
+    /* =========================================
+      SERVICE DETAILS — PORTFOLIO THEME
+    ========================================= */
+
+    :root {
+      --service-bg: #010406;
+      --service-surface: #0d1216;
+      --service-border: rgba(255, 255, 255, 0.12);
+      --service-muted: #a0a6aa;
+      --service-accent: var(--main-two-600, #ff5b22);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          ellipse at 80% 5%,
+          rgba(255, 91, 34, 0.09),
+          transparent 35%
+        ),
+        var(--service-bg);
+      color: #fff;
+      font-family: var(--body-font, "Instrument Sans", sans-serif);
+    }
+
+    .service-details-wrapper {
+      min-height: 100vh;
+      padding: 125px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-details-wrapper::before {
+      content: "SERVICE";
+      position: absolute;
+      top: 145px;
+      right: -30px;
+      font-family: var(--heading-font, "Phudu", sans-serif);
+      font-size: clamp(130px, 23vw, 340px);
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.025);
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .service-details-content {
+      max-width: 1050px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Back navigation */
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--service-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 65px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: var(--service-accent);
+      transform: translateX(-5px);
+    }
+
+    /* Service label */
+
+    .service-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--service-accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .service-label::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--service-accent);
+    }
+
+    /* Main heading */
+
+    .service-heading {
+      max-width: 950px;
+      font-family: var(--heading-font, "Phudu", sans-serif);
+      font-size: clamp(48px, 8vw, 108px);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 25px 0 30px;
+      overflow-wrap: break-word;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Intro */
+
+    .service-description {
+      color: var(--service-muted);
+      font-size: 18px;
+      line-height: 1.9;
+      max-width: 790px;
+      font-weight: 400;
+    }
+
+    /* Hero image */
+
+    .service-details-image {
+      position: relative;
+      margin: 65px 0 85px;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid var(--service-border);
+      background: var(--service-surface);
+    }
+
+    .service-details-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        0deg,
+        rgba(1, 4, 6, 0.25),
+        transparent 55%
+      );
+      pointer-events: none;
+    }
+
+    .service-details-image img {
+      width: 100%;
+      height: 480px;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .service-details-image:hover img {
+      transform: scale(1.035);
+    }
+
+    /* What I do */
+
+    .service-section-title {
+      font-family: var(--heading-font, "Phudu", sans-serif);
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin: 0 0 22px;
+      line-height: 1.1;
+    }
+
+    #service-description {
+      margin-bottom: 35px;
+    }
+
+    /* Feature cards */
+
+    .service-features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 35px 0 85px;
+    }
+
+    .service-feature {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 75px;
+      padding: 20px 24px;
+      border: 1px solid var(--service-border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+      color: #e5e5e5;
+      font-size: 16px;
+      transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .service-feature::before {
+      content: "↗";
+      color: var(--service-accent);
+      font-size: 19px;
+      margin-right: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-feature:hover {
+      border-color: var(--service-accent);
+      background: rgba(255, 91, 34, 0.055);
+      transform: translateY(-4px);
+    }
+
+    .service-feature:hover::before {
+      transform: translate(3px, -3px);
+    }
+
+    /* CTA */
+
+    .service-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 19px 32px;
+      background: var(--service-accent);
+      color: #fff;
+      border: 1px solid var(--service-accent);
+      border-radius: 8px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.35s ease;
+    }
+
+    .service-contact::after {
+      content: "↗";
+      font-size: 19px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-contact:hover {
+      background: transparent;
+      color: var(--service-accent);
+    }
+
+    .service-contact:hover::after {
+      transform: translate(4px, -4px);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 767px) {
+      .service-details-wrapper {
+        padding: 115px 20px 75px;
+      }
+
+      .back-link {
+        margin-bottom: 45px;
+      }
+
+      .service-heading {
+        letter-spacing: -1px;
+      }
+
+      .service-description {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .service-details-image {
+        margin: 45px 0 60px;
+        border-radius: 16px;
+      }
+
+      .service-details-image img {
+        height: 300px;
+      }
+
+      .service-features {
+        grid-template-columns: 1fr;
+        margin-bottom: 60px;
+      }
+
+      .service-feature {
+        min-height: 65px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .service-heading {
+        font-size: 43px;
+      }
+
+      .service-details-image img {
+        height: 230px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="service-details-wrapper">
+    <div class="container">
+      <div class="service-details-content">
+
+        <a href="index.html#services" class="back-link">
+          ← Back to Services
+        </a>
+
+        <span class="service-label" id="service-number">
+          SERVICE 01
+        </span>
+
+        <h1 class="service-heading" id="service-title">
+          Full-Stack Development
+        </h1>
+
+        <p class="service-description" id="service-intro"></p>
+
+        <div class="service-details-image">
+          <img id="service-image"
+               src="assets/images/thumbs/service-three-thumb1.png"
+               alt="Service illustration">
+        </div>
+
+        <h2 class="service-section-title" id="section-title">
+          What I Do
+        </h2>
+
+        <p class="service-description" id="service-description"></p>
+
+        <div class="service-features" id="service-features"></div>
+
+        <a href="index.html#services" class="service-contact">
+          Explore Other Services
+        </a>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const services = {
+      fullstack: {
+        number: "SERVICE 01",
+        title: "Full-Stack Development",
+        intro: "Building modern, responsive and scalable web applications by combining intuitive frontend experiences with reliable backend systems.",
+        section: "End-to-End Web Development",
+        description: "From designing user interfaces to developing backend logic and integrating databases, I focus on building complete web solutions.",
+        features: [
+          "Frontend Development",
+          "Backend Development",
+          "Database Integration",
+          "REST API Development",
+          "Responsive Web Design",
+          "Application Architecture"
+        ],
+        image: "assets/images/thumbs/service-three-thumb1.png"
+      },
+
+      "ai-ml": {
+        number: "SERVICE 02",
+        title: "AI & Machine Learning",
+        intro: "Exploring intelligent solutions through machine learning, computer vision and practical artificial intelligence applications.",
+        section: "Intelligent Solutions",
+        description: "Developing AI-powered applications that use data and machine learning techniques to solve practical problems.",
+        features: [
+          "Machine Learning",
+          "Computer Vision",
+          "AI Integration",
+          "Model Development",
+          "Data Processing",
+          "Intelligent Automation"
+        ],
+        image: "assets/images/thumbs/service-three-thumb2.png"
+      },
+
+      "web-dev": {
+        number: "SERVICE 03",
+        title: "Web Development",
+        intro: "Creating modern and user-friendly websites with responsive layouts, clean interfaces and efficient implementation.",
+        section: "Modern Web Experiences",
+        description: "Building websites that balance visual presentation, usability, performance and maintainable code.",
+        features: [
+          "HTML & CSS",
+          "JavaScript",
+          "React & Next.js",
+          "Responsive Design",
+          "UI Implementation",
+          "Performance Optimization"
+        ],
+        image: "assets/images/thumbs/service-three-thumb1.png"
+      },
+
+      "app-dev": {
+        number: "SERVICE 04",
+        title: "Application Development",
+        intro: "Developing cross-platform applications with practical functionality and intuitive user experiences.",
+        section: "Application Engineering",
+        description: "Building application interfaces and integrating backend services to create useful, reliable mobile experiences.",
+        features: [
+          "Flutter Development",
+          "Cross-Platform Apps",
+          "API Integration",
+          "Firebase Integration",
+          "Database Management",
+          "Mobile UI Development"
+        ],
+        image: "assets/images/thumbs/service-three-thumb2.png"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const serviceKey = params.get("service") || "fullstack";
+    const service = services[serviceKey] || services.fullstack;
+
+    document.title = service.title + " | Chetan";
+
+    document.getElementById("service-number").textContent =
+      service.number;
+
+    document.getElementById("service-title").textContent =
+      service.title;
+
+    document.getElementById("service-intro").textContent =
+      service.intro;
+
+    document.getElementById("section-title").textContent =
+      service.section;
+
+    document.getElementById("service-description").textContent =
+      service.description;
+
+    document.getElementById("service-image").src =
+      service.image;
+
+    const featuresContainer =
+      document.getElementById("service-features");
+
+    service.features.forEach(feature => {
+      const item = document.createElement("div");
+      item.className = "service-feature";
+      item.textContent = feature;
+      featuresContainer.appendChild(item);
+    });
+  </script>
+
+</body>
+</html>
